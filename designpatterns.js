@@ -2,7 +2,25 @@ var express = require('express');
 
 var app = express();
 
+var handlebars = require('express-handlebars')
+	.create({defaultLayout:'main' });
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
 app.set('port', process.env.PORT || 3000);
+
+app.get('/', function(req, res){
+	res.render('home');
+});
+
+app.get('/home', function(req, res){
+	res.render('home');
+});
+
+app.get('/designpatterns', function(req, res){
+	res.type('text/plain');
+	res.send('{json: Design patterns json}');
+});
 
 app.use(function(req, res){
 	res.type('text/plain');
