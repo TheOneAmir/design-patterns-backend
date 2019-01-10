@@ -22,6 +22,8 @@ app.get('/designpatterns', function(req, res){
 	res.send('{json: Design patterns json}');
 });
 
+app.use(express.static(__dirname + '/public'));
+
 app.use(function(req, res){
 	res.type('text/plain');
 	res.status(404);
